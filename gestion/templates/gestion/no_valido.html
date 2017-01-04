@@ -1,0 +1,6 @@
+{% extends "gestion/base.html" %}
+{% load staticfiles %}
+{% block content %}
+  <p> Error en el registro, intentelo de nuevo.</p>
+  <a href="{% url 'nuevo_usuario' %}"><button type="button">Registrarse</button></a>
+{% endblock %}

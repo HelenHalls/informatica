@@ -1,0 +1,16 @@
+{% extends "gestion/base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<p>{{ mensaje.text }}</p>
+<a href="{% url 'nuevo_comentario' pk=mensaje.pk %}"><button type="button">Agregar comentario</button></a>
+</br>
+<h3>Comentarios</h3>
+{% for c in comentarios %}
+  <p>@{{ c.author}}</p>
+  <h4>{{ c.text }}</h4>
+  <p>{{ c.date }}</p>
+  </br>
+{% endfor %}
+
+{% endblock %}

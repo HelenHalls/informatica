@@ -1,0 +1,9 @@
+{% extends "gestion/base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+{% for u in users %}
+  <p><a href="{% url 'detalle_usuario' user_details=u.username %}">@{{ u.username }}</a></p>
+{% endfor %}
+
+{% endblock %}

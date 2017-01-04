@@ -1,0 +1,34 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding-left: 15px;
+    background-color: #D1FFFF;
+}
+h1 a {
+
+}
+.page-header {
+    color: #000000;
+    margin-top: 0;
+    padding: 20px 20px 20px 40px;
+}
+.mess {
+  padding: 20px 20px 20px 40px;
+  color:#FF7F50;
+}
+
+.mess h3 {
+  color:#FF3300;
+}
+
+.date {
+  color:#BC7F50;
+}
+
+.wrapper {
+  min-height: 100%;
+  margin-bottom: -70px;
+}
+.footer, .push {
+  height: 70px;
+}

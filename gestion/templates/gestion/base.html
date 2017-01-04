@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Microblogging by Elena</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/gestion.css' %}">
+    </head>
+
+    <body>
+      <div class="wrapper">
+
+      <nav class="navbar navbar navbar-fixed">
+        <div class="allnav">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'index' %}">Inicio</a>
+          </div>
+
+          <div id="navbar" class="collapse navbar-collapse">
+
+            <ul class="nav navbar-nav">
+              {% if user.is_authenticated %}
+              <li><a href="{% url 'lista_usuarios' %}">Usuarios</a></li>
+              <li><a href="{% url 'ver_seguidores' %}">Seguidores</a></li>
+              <li><a href="{% url 'ver_seguidos' %}">Siguiendo</a></li>
+              <li><a href="{% url 'nuevo_mensaje' %}"><span class="glyphicon glyphicon-plus"></span> Agregar mensaje</a></li>
+              {% endif %}
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+
+            </ul>
+
+            <!-- Parte derecha dedicada a los usuarios -->
+
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                  <li><a>¡Hola, @{{ user.username }}!</a></li>
+                  <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+
+                {% else %}
+                  <li><a href="{% url 'nuevo_usuario' %}"><span class="glyphicon glyphicon-user"></span> Registrarse</a></li>
+                  <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Iniciar Sesion</a></li>
+                {% endif %}
+            </ul>
+
+          </div><!--/.nav-collapse -->
+      </div>
+      </nav>
+
+      {% block content %}
+      {% endblock content %}
+      
+      <div class="push"></div>
+      </div>
+      <footer class="site-footer">
+          <hr>
+          <p style="text-align: center;">
+              <small>Programación Web</small>
+              <small> | </small>
+              <small><strong>ⓒ 2017 Elena Salas Alcaide</strong></small>
+          </p>
+      </footer>
+    </body>
+
+</html>

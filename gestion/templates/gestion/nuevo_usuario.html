@@ -1,0 +1,8 @@
+{% extends "gestion/base.html" %}
+{% load staticfiles %}
+{% block content %}
+  <form id='formulario' method='post' action=''>{% csrf_token %}
+    <table>{{ formulario }}</table>
+    <p><input type='submit' value='Registrarse'/></p>
+  </form>
+{% endblock %}

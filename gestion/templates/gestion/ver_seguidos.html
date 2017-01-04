@@ -1,0 +1,10 @@
+{% extends "gestion/base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<h3>Siguiendo a: {{ seguidos.count }} usuarios</h3>
+{% for s in seguidos %}
+  <p>@{{ s.followed }}</p>
+{% endfor %}
+
+{% endblock %}

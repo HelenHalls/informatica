@@ -1,0 +1,10 @@
+{% extends "gestion/base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<p>@{{ usuario }}</p>
+<a href="{% url 'follow' userr=usuario.username %}"><button type="button">Seguir</button></a>
+<a href="{% url 'unfollow' userr=usuario.username %}"><button type="button">Dejar de seguir</button></a>
+</br>
+
+{% endblock %}

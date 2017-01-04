@@ -1,0 +1,52 @@
+{% extends "gestion/base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+{% for m in messages %}
+  {% if m.author == usuario.user %}
+  <table width="400" cellspacing="1" cellpadding="3" border="1" bgcolor="#165480">
+    <tr>
+       <td bgcolor="#5FA6D7" align="right">
+    <font size=1 face="verdana, arial, helvetica">
+    <b>@{{ m.author }}</b>
+    </font>
+       </td>
+    </tr>
+    <tr>
+        <td bgcolor="#ffffcc">
+       <font face="verdana, arial, helvetica" size=1>
+         <h3><a href="{% url 'detalle_mensaje' pk=m.pk %}">{{ m.text }}</a></h3>
+         <p>{{ m.published_date }}</p>
+       </font>
+       </td>
+    </tr>
+  </table>
+</br>
+  {% endif %}
+
+  {% for f in followed_users%}
+    {% if m.author == f.followed %}
+    <table width="400" cellspacing="1" cellpadding="3" border="1" bgcolor="#165480">
+      <tr>
+         <td bgcolor="#5FA6D7" align="right">
+      <font size=1 face="verdana, arial, helvetica">
+        <b>@{{ m.author }}</b>
+      </font>
+         </td>
+      </tr>
+      <tr>
+          <td bgcolor="#ffffcc">
+         <font face="verdana, arial, helvetica" size=1>
+        <h3><a href="{% url 'detalle_mensaje' pk=m.pk %}">{{ m.text }}</a></h3>
+        <p>{{ m.published_date }}</p>
+      </font>
+      </td>
+   </tr>
+ </table>
+ </br>
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+
+{% endblock %}
