@@ -2,15 +2,63 @@
 {% load staticfiles %}
 {% block content %}
 
-<p>{{ mensaje.text }}</p>
-<a href="{% url 'nuevo_comentario' pk=mensaje.pk %}"><button type="button">Agregar comentario</button></a>
+<table width="400" cellspacing="1" cellpadding="3" border="1" bgcolor="#165480">
+  <tr>
+     <td bgcolor="#5FA6D7" align="left">
+  <font size=1 face="verdana, arial, helvetica">
+  <h6><b>@{{ mensaje.author }}</b></h6>
+  </font>
+     </td>
+  </tr>
+  <tr>
+      <td bgcolor="#ffffff" align="center">
+     <font face="verdana, arial, helvetica" size=1>
+       <h4><a href="{% url 'detalle_mensaje' pk=mensaje.pk %}">{{ mensaje.text }}</a></h4>
+     </font>
+     </td>
+  </tr>
+  <tr>
+      <td bgcolor="#ADD8E6" align="right">
+     <font face="verdana, arial, helvetica" size=1>
+       {{ mensaje.published_date }}
+     </font>
+     </td>
+  </tr>
+
+</table>
 </br>
+
+<a href="{% url 'nuevo_comentario' pk=mensaje.pk %}"><button type="button">Agregar comentario</button></a>
+
+</br>
+
 <h3>Comentarios</h3>
 {% for c in comentarios %}
-  <p>@{{ c.author}}</p>
-  <h4>{{ c.text }}</h4>
-  <p>{{ c.date }}</p>
-  </br>
+<table width="400" cellspacing="1" cellpadding="3" border="1" bgcolor="#165480">
+  <tr>
+     <td bgcolor="#5FA6D7" align="left">
+  <font size=1 face="verdana, arial, helvetica">
+  <h6><b>@{{ c.author }}</b></h6>
+  </font>
+     </td>
+  </tr>
+  <tr>
+      <td bgcolor="#ffffff" align="center">
+     <font face="verdana, arial, helvetica" size=1>
+       <h4>{{ c.text }}</a></h4>
+     </font>
+     </td>
+  </tr>
+  <tr>
+      <td bgcolor="#ADD8E6" align="right">
+     <font face="verdana, arial, helvetica" size=1>
+       {{ c.date }}
+     </font>
+     </td>
+  </tr>
+
+</table>
+</br>
 {% endfor %}
 
 {% endblock %}

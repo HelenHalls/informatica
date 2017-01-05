@@ -4,7 +4,7 @@
 
 <h3>Te siguen: {{ seguidores.count }} usuarios</h3>
 {% for s in seguidores %}
-  <p>@{{ s.follower }}</p>
+  <p><a href="{% url 'detalle_usuario' user_details=s.follower.username %}">@{{ s.follower }}</a></p>
 {% endfor %}
 
 {% endblock %}

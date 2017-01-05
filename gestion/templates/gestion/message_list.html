@@ -6,20 +6,27 @@
   {% if m.author == usuario.user %}
   <table width="400" cellspacing="1" cellpadding="3" border="1" bgcolor="#165480">
     <tr>
-       <td bgcolor="#5FA6D7" align="right">
+       <td bgcolor="#5FA6D7" align="left">
     <font size=1 face="verdana, arial, helvetica">
-    <b>@{{ m.author }}</b>
+    <h6><b>@{{ m.author }}</b></h6>
     </font>
        </td>
     </tr>
     <tr>
-        <td bgcolor="#ffffcc">
+        <td bgcolor="#ffffff" align="center">
        <font face="verdana, arial, helvetica" size=1>
-         <h3><a href="{% url 'detalle_mensaje' pk=m.pk %}">{{ m.text }}</a></h3>
-         <p>{{ m.published_date }}</p>
+         <h4><a href="{% url 'detalle_mensaje' pk=m.pk %}">{{ m.text }}</a></h4>
        </font>
        </td>
     </tr>
+    <tr>
+        <td bgcolor="#ADD8E6" align="right">
+       <font face="verdana, arial, helvetica" size=1>
+         {{ m.published_date }}
+       </font>
+       </td>
+    </tr>
+
   </table>
 </br>
   {% endif %}
@@ -28,17 +35,23 @@
     {% if m.author == f.followed %}
     <table width="400" cellspacing="1" cellpadding="3" border="1" bgcolor="#165480">
       <tr>
-         <td bgcolor="#5FA6D7" align="right">
+         <td bgcolor="#5FA6D7" align="left">
       <font size=1 face="verdana, arial, helvetica">
-        <b>@{{ m.author }}</b>
+          <h6><b>@{{ m.author }}</b></h6>
       </font>
          </td>
       </tr>
       <tr>
-          <td bgcolor="#ffffcc">
+          <td bgcolor="#ffffff" align="center">
          <font face="verdana, arial, helvetica" size=1>
-        <h3><a href="{% url 'detalle_mensaje' pk=m.pk %}">{{ m.text }}</a></h3>
-        <p>{{ m.published_date }}</p>
+        <h4><a href="{% url 'detalle_mensaje' pk=m.pk %}">{{ m.text }}</a></h4>
+      </font>
+      </td>
+   </tr>
+   <tr>
+       <td bgcolor="#ADD8E6" align="right">
+      <font face="verdana, arial, helvetica" size=1>
+        {{ m.published_date }}
       </font>
       </td>
    </tr>

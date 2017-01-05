@@ -4,7 +4,7 @@
 
 <h3>Siguiendo a: {{ seguidos.count }} usuarios</h3>
 {% for s in seguidos %}
-  <p>@{{ s.followed }}</p>
+  <p><a href="{% url 'detalle_usuario' user_details=s.followed.username %}">@{{ s.followed }}</a></p>
 {% endfor %}
 
 {% endblock %}

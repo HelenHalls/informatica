@@ -53,6 +53,7 @@ def acceso(request):
         formulario = AuthenticationForm()
     return render(request, 'gestion/login.html', {'formulario': formulario})
 
+@login_required(login_url='login')
 def salir(request):
     logout(request)
     return redirect('/')
@@ -81,7 +82,7 @@ def follow(request, userr):
       try:
           usr2folw = User.objects.get(username=userr)
       except:
-          response = 'Unable to Follow now.'
+          response = 'Lo sentimos, no puedes seguir a nadie en estos momentos.'
 
       # Follow process. create master and slave.
       # slave follows master. Update followers count
@@ -89,7 +90,7 @@ def follow(request, userr):
       else:
           if request.user == usr2folw:
 
-              response = 'You can not follow or unfollow yourself.'
+              response = 'Un usuario no puede seguirse a si mismo.'
 
           else:
 
@@ -104,16 +105,16 @@ def follow(request, userr):
                       master.save()
                       slave.save()
 
-                      response = 'Following %s now.' % (usr2folw.username)
+                      response = 'Ahora sigues a @%s.' % (usr2folw.username)
                   elif obj is not None:
 
-                      response = 'You already follow %s.' % (usr2folw.username)
+                      response = 'Ya sigues a @%s.' % (usr2folw.username)
 
 
               except:
-                  response = 'Unable to Follow %s now.' % (usr2folw.username)
+                  response = 'Lo sentimos, no puedes seguir a @%s en estos momentos.' % (usr2folw.username)
     else:
-      response = 'Your request can not be served now.'
+      response = 'Lo sentimos, la peticion no puede ser atendida en estos momentos, intentalo de nuevo mas tarde.'
 
     return render(request, 'gestion/follow.html', {'response':response})
 
@@ -127,12 +128,11 @@ def unfollow(request, userr):
         try:
             usr2unfolw = User.objects.get(username=userr)
         except:
-            response = 'Unable to UnFollow now.'
+            response = 'Lo sentimos, no puedes dejar de seguir a nadie en estos momentos.'
 
-            # Same logic as above but in reverse manner.
         else:
             if request.user == usr2unfolw: # Si intentamos dar unfollow a nosotros mismos
-                response = 'You can not follow or unfollow yourself.'
+                response = 'Un usuario no puede seguirse a si mismo, y tampoco dejar de seguirse.'
 
             else:
                 try:
@@ -144,12 +144,12 @@ def unfollow(request, userr):
                     master.save()
                     slave.save()
 
-                    response = 'Successfuly unfollow to %s now.' % usr2unfolw.username
+                    response = 'Has dejado de seguir a @%s.' % usr2unfolw.username
                 except:
-                    response = 'You do not follow %s.' %(usr2unfolw.username)
+                    response = 'No sigues a @%s.' %(usr2unfolw.username)
 
     else: # Si no es method == 'GET'
-        response = 'Your request can not be served now.'
+        response = 'Lo sentimos, la peticion no puede ser atendida en estos momentos, intentalo de nuevo mas tarde.'
 
     return render(request, 'gestion/unfollow.html', {'response':response})
 
@@ -187,7 +187,7 @@ def new_coment(request, pk):
                 coment.published_date = timezone.now()
                 coment.id_message = Message.objects.get(pk=pk)
                 coment.save()
-                return redirect('/')
+                return redirect('detalle_mensaje', pk=pk)
         else:
             form = ComentForm()
         return render(request, 'gestion/new_coment.html', {'form': form})
