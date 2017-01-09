@@ -3,7 +3,9 @@
 {% block content %}
 
 {% for u in users %}
+  {% if me != u %}
   <p><a href="{% url 'detalle_usuario' user_details=u.username %}">@{{ u.username }}</a></p>
+  {% endif %}
 {% endfor %}
 
 {% endblock %}

@@ -19,7 +19,8 @@ def message_list(request):
 @login_required(login_url='login')
 def users_list(request):
     users = User.objects.all()
-    return render(request, 'gestion/users_list.html', {'users': users})
+    me = User.objects.get(username = request.user.username)
+    return render(request, 'gestion/users_list.html', {'users': users, 'me':me})
 
 @login_required(login_url='login')
 def user_detail(request, user_details):
