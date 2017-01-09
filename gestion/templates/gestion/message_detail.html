@@ -32,33 +32,36 @@
 
 </br>
 
+{% if comentarios.count != 0 %}
 <h3>Comentarios</h3>
-{% for c in comentarios %}
-<table width="400" cellspacing="1" cellpadding="3" border="1" bgcolor="#165480">
-  <tr>
-     <td bgcolor="#5FA6D7" align="left">
-  <font size=1 face="verdana, arial, helvetica">
-  <h6><b>@{{ c.author }}</b></h6>
-  </font>
-     </td>
-  </tr>
-  <tr>
-      <td bgcolor="#ffffff" align="center">
-     <font face="verdana, arial, helvetica" size=1>
-       <h4>{{ c.text }}</a></h4>
-     </font>
-     </td>
-  </tr>
-  <tr>
-      <td bgcolor="#ADD8E6" align="right">
-     <font face="verdana, arial, helvetica" size=1>
-       {{ c.date }}
-     </font>
-     </td>
-  </tr>
 
-</table>
-</br>
-{% endfor %}
+  {% for c in comentarios %}
+  <table width="400" cellspacing="1" cellpadding="3" border="1" bgcolor="#165480">
+    <tr>
+       <td bgcolor="#FF4500" align="left">
+    <font size=1 face="verdana, arial, helvetica">
+    <h6><b>@{{ c.author }}</b></h6>
+    </font>
+       </td>
+    </tr>
+    <tr>
+        <td bgcolor="#ffffff" align="center">
+       <font face="verdana, arial, helvetica" size=1>
+         <h4>{{ c.text }}</a></h4>
+       </font>
+       </td>
+    </tr>
+    <tr>
+        <td bgcolor="#F4A460" align="right">
+       <font face="verdana, arial, helvetica" size=1>
+         {{ c.date }}
+       </font>
+       </td>
+    </tr>
+
+  </table>
+  </br>
+  {% endfor %}
+{% endif %}
 
 {% endblock %}
